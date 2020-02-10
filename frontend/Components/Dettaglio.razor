@@ -1,0 +1,12 @@
+<h2>Evento @DettaglioCorrente.Nome</h2>
+
+<button class="btn btn-primary">Salva</button>
+<button class="btn btn-warning" @onclick="OnAnnulla">Annulla</button>
+
+@code {
+    [Parameter]
+    public DettaglioEvento DettaglioCorrente { get; set; }
+
+    [Parameter]
+    public EventCallback OnAnnulla { get; set; }
+}

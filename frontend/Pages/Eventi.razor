@@ -1,0 +1,56 @@
+@page "/eventi"
+@if(this.EventoCorrente == null)
+{
+    <h2>Eventi</h2>
+    <Lista 
+        ElementiLista="ListaEventi" 
+        OnCrea="CreaEvento"
+        OnElimina="EliminaEvento"
+        OnModifica="ModificaEvento">
+    </Lista>
+}
+else
+{
+    <Dettaglio 
+        DettaglioCorrente="EventoCorrente" 
+        OnAnnulla="Annulla">
+    </Dettaglio>
+}
+
+@code {
+
+    public DettaglioEvento EventoCorrente { get; set; }
+
+    public List<ElementoListaEvento> ListaEventi { get; set; }
+        = new List<ElementoListaEvento>
+            {
+                new ElementoListaEvento() { Id = 1, Nome="DevDay Benevento - Blazor", Localita="Benvento", Data = new DateTime(2020, 2,8)},
+                new ElementoListaEvento() { Id = 2, Nome="DotNetSide Bari - Blazor", Localita="Bari", Data = new DateTime(2020, 2, 21)}
+            };
+    
+    public void CreaEvento() 
+    {
+        this.EventoCorrente = new DettaglioEvento();
+    }
+
+    public void ModificaEvento(ElementoListaEvento elemento) 
+    {
+        this.EventoCorrente = new DettaglioEvento()
+        {
+            Id = elemento.Id,
+            Nome = elemento.Nome,
+            Localita = elemento.Localita,
+            Data = elemento.Data
+        };
+    }
+
+    public void EliminaEvento(ElementoListaEvento elemento) 
+    {
+        this.ListaEventi.Remove(elemento);
+    }
+
+    public void Annulla()
+    {
+        this.EventoCorrente = null;
+    }
+}

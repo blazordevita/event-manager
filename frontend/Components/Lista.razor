@@ -1,0 +1,37 @@
+<button class="btn btn-primary" @onclick="OnCrea">Crea evento</button>
+<table class="table mt-4">
+    <tr>
+        <th>Id</th>
+        <th>Nome</th>
+        <th>Località</th>
+        <th>Data</th>
+        <th></th>
+    </tr>
+    @foreach (var evento in ElementiLista)
+    {
+        <tr>
+            <td>@evento.Id</td>
+            <td>@evento.Nome</td>
+            <td>@evento.Localita</td>
+            <td>@evento.Data</td>
+            <td>
+                <button class="btn btn-warning" @onclick="e => OnModifica.InvokeAsync(evento)" >Modifica</button>
+                <button class="btn btn-danger" @onclick="e => OnElimina.InvokeAsync(evento)">Elimina</button>
+            </td>
+        </tr>
+    }
+</table>
+
+@code {
+    [Parameter]
+    public List<ElementoListaEvento> ElementiLista { get; set; }
+
+    [Parameter]
+    public EventCallback OnCrea { get; set; }
+
+    [Parameter]
+    public EventCallback<ElementoListaEvento> OnModifica { get; set; }
+
+    [Parameter]
+    public EventCallback<ElementoListaEvento> OnElimina { get; set; }
+}
