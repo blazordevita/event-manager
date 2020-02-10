@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace frontend.Models
+namespace shared.Models
 {
     public class DettaglioEvento
     {

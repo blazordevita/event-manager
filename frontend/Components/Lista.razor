@@ -24,8 +24,8 @@
     }
 </table>
 
-<Conferma 
-    IdConferma="eliminaEvento" 
+<Conferma
+    IdConferma="eliminaEvento"
     Titolo="Elimina Evento"
     Messaggio="@("Eliminare l'evento " + @elementoDaEliminare?.Nome)"
     OnSi="ConfermaEliminazione" />
@@ -44,16 +44,16 @@
     public EventCallback<ElementoListaEvento> OnElimina { get; set; }
 
     private ElementoListaEvento elementoDaEliminare;
-
+    
     private async Task MostraConferma(ElementoListaEvento elemento)
     {
-      this.elementoDaEliminare = elemento;
-      await JSRuntime.InvokeAsync<bool>("mostraConferma", "eliminaEvento");
+        this.elementoDaEliminare = elemento;
+        await JSRuntime.InvokeAsync<bool>("mostraConferma", "eliminaEvento");
     }
-
+    
     private async Task ConfermaEliminazione()
     {
-      await OnElimina.InvokeAsync(this.elementoDaEliminare);
-      await JSRuntime.InvokeAsync<bool>("nascondiConferma", "eliminaEvento");
+        await OnElimina.InvokeAsync(this.elementoDaEliminare);
+        await JSRuntime.InvokeAsync<bool>("nascondiConferma", "eliminaEvento");
     }
 }

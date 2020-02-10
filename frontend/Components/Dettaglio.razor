@@ -2,7 +2,7 @@
 
 <EditForm Model="@DettaglioCorrente" OnValidSubmit="@(e => OnSalva.InvokeAsync(DettaglioCorrente))">
     <DataAnnotationsValidator />
-
+    
     <div class="form-group">
         <label for="nome">Nome:</label>
         <InputText id="nome" @bind-Value="DettaglioCorrente.Nome" class="form-control" />

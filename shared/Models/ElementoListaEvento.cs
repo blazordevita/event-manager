@@ -1,6 +1,6 @@
 using System;
 
-namespace frontend.Models
+namespace shared.Models
 {
     public class ElementoListaEvento
     {
