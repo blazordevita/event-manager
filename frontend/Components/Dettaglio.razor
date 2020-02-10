@@ -1,11 +1,48 @@
 <h2>Evento @DettaglioCorrente.Nome</h2>
 
-<button class="btn btn-primary">Salva</button>
-<button class="btn btn-warning" @onclick="OnAnnulla">Annulla</button>
+<EditForm Model="@DettaglioCorrente" OnValidSubmit="@(e => OnSalva.InvokeAsync(DettaglioCorrente))">
+    <DataAnnotationsValidator />
+
+    <div class="form-group">
+        <label for="nome">Nome:</label>
+        <InputText id="nome" @bind-Value="DettaglioCorrente.Nome" class="form-control" />
+        <ValidationMessage For="@(() => DettaglioCorrente.Nome)" />
+    </div>
+
+    <div class="form-group">
+        <label for="localita">Localita:</label>
+        <InputText id="localita" @bind-Value="DettaglioCorrente.Localita" class="form-control" />
+        <ValidationMessage For="@(() => DettaglioCorrente.Localita)" />
+    </div>
+
+    <div class="form-group">
+        <label for="data">Nome:</label>
+        <InputDate id="data" @bind-Value="DettaglioCorrente.Data" class="form-control" />
+        <ValidationMessage For="@(() => DettaglioCorrente.Data)" />
+    </div>
+
+    <div class="form-group">
+        <label for="descrizione">Descrizione:</label>
+        <InputTextArea id="descrizione" @bind-Value="DettaglioCorrente.Descrizione" class="form-control" />
+        <ValidationMessage For="@(() => DettaglioCorrente.Descrizione)" />
+    </div>
+
+    <div class="form-group">
+        <label for="note">Note:</label>
+        <InputTextArea id="note" @bind-Value="DettaglioCorrente.Note" class="form-control" />
+        <ValidationMessage For="@(() => DettaglioCorrente.Note)" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Salva</button>
+    <button type="button" class="btn btn-warning" @onclick="OnAnnulla">Annulla</button>
+</EditForm>
 
 @code {
     [Parameter]
     public DettaglioEvento DettaglioCorrente { get; set; }
+
+    [Parameter]
+    public EventCallback<DettaglioEvento> OnSalva { get; set; }
 
     [Parameter]
     public EventCallback OnAnnulla { get; set; }
