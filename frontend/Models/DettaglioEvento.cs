@@ -7,13 +7,13 @@ namespace frontend.Models
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Il nome Ë obbligatorio!")]
+        [Required(ErrorMessage = "Il nome √® obbligatorio!")]
         public string Nome { get; set; }
 
-        [Required(ErrorMessage = "La localit‡ Ë obbligatoria!")]
+        [Required(ErrorMessage = "La localit√† √® obbligatoria!")]
         public string Localita { get; set; }
 
-        [Required(ErrorMessage = "La data Ë obbligatorio!")]
+        [Required(ErrorMessage = "La data √® obbligatorio!")]
         public DateTime Data { get; set; }
         public string Descrizione { get; set; }
         public string Note { get; set; }
