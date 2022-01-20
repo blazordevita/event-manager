@@ -12,7 +12,8 @@
 else
 {
     <Dettaglio 
-        DettaglioCorrente="EventoCorrente" 
+        DettaglioCorrente="EventoCorrente"
+        OnSalva="Salva"
         OnAnnulla="Annulla">
     </Dettaglio>
 }
@@ -47,6 +48,29 @@ else
     public void EliminaEvento(ElementoListaEvento elemento) 
     {
         this.ListaEventi.Remove(elemento);
+    }
+
+    public void Salva(DettaglioEvento elemento)
+    {
+        if(elemento.Id == 0) // Creazione
+        {
+            this.ListaEventi.Add(new ElementoListaEvento() 
+            {
+                Id = ListaEventi.Count() > 0 ? ListaEventi.Max(x => x.Id) + 1 : 1,
+                Nome = elemento.Nome,
+                Localita = elemento.Localita,
+                Data = elemento.Data
+            });
+        }
+        else // Modifica
+        {
+            var elementoDaModificare = this.ListaEventi.First(x => x.Id == elemento.Id);
+            elementoDaModificare.Nome = elemento.Nome;
+            elementoDaModificare.Localita = elemento.Localita;
+            elementoDaModificare.Data = elemento.Data;
+        }
+
+        this.EventoCorrente = null;
     }
 
     public void Annulla()
