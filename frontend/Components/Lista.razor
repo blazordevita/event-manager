@@ -1,5 +1,6 @@
 <button class="btn btn-primary" @onclick="OnCrea">Crea evento</button>
-<table class="table mt-4">
+<table class="table table-hover mt-4">
+    <thead>
     <tr>
         <th>Id</th>
         <th>Nome</th>
@@ -7,6 +8,8 @@
         <th>Data</th>
         <th></th>
     </tr>
+    </thead>
+    <tbody>
     @foreach (var evento in ElementiLista)
     {
         <tr>
@@ -20,6 +23,7 @@
             </td>
         </tr>
     }
+    </tbody>
 </table>
 
 @code {
